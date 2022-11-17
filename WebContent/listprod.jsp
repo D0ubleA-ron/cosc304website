@@ -53,11 +53,11 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
    String sql = null;     
    ResultSet rst = null;
    if(name == null || name.equals("")){
-       sql = "SELECT productName, productPrice FROM product";     
+       sql = "SELECT productId, productName, productPrice FROM product";      
        rst = stmt.executeQuery(sql);
    }else{
        name = "%"+name+"%";
-       sql = "SELECT productName, productPrice FROM product WHERE productName LIKE ?";
+       sql = "SELECT productId, productName, productPrice FROM product WHERE productName LIKE ?";
        PreparedStatement pstmt = con.prepareStatement(sql);
        pstmt.setString(1, name);
        rst = pstmt.executeQuery();
@@ -65,11 +65,13 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
    out.println("<h2>All Products</h2>");
    out.println("<table><tr><th></th><th><h3>Product Name</h3></th><th><h3>Price</h3></th></tr>");
    while (rst.next())
-   {  
-       double price = rst.getDouble(2);
+   {
+       int prodId = rst.getInt(1);
+       String prodname = rst.getString(2);
+       double prodprice = rst.getDouble(3);
        NumberFormat currFormat = NumberFormat.getCurrencyInstance();
-       out.println("<tr><td>Add to Cart</td>"+"<td>"+rst.getString(1)+"</td>" +"<td>"+currFormat.format(price)+"</td></tr>");
-       
+       String str = "addcart.jsp?id=" + prodId +"&name=" + prodname + "&price=" +prodprice;
+       out.println("<tr><td><a href=" + str + "> Add to Cart</a></td>"+"<td>"+rst.getString(2)+"</td>" +"<td>"+currFormat.format(prodprice)+"</td></tr>");
  
    }
    out.println("</table>");
@@ -83,3 +85,4 @@ catch (SQLException ex)
  
 </body>
 </html>
+
