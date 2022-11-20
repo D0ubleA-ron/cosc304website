@@ -12,8 +12,16 @@
 </head>
 <body>
 
-<h1>Our Grocery</h1>
-<hr>
+	<nav>
+		<h1 class="logo">Our Grocery</h1>
+		<div class="links">
+			<a href="shop.html">Home</a>
+      	<p> | </p>
+			 <a href="listprod.jsp">Our Products</a>
+			 <p> | </p>
+			 <a href="listorder.jsp">Orders</a>
+		</div>
+ </nav>
 
 <%
 // Get the current list of products

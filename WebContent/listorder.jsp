@@ -5,10 +5,22 @@
 <html>
 <head>
 <title>YOUR NAME Grocery Order List</title>
+<link rel="stylesheet" href="./css/listorder.css">
 </head>
 <body>
  
-<h1>Order List</h1>
+	<nav>
+		<h1 class="logo">Our Grocery</h1>
+		<div class="links">
+         <a href="shop.html">Home</a>
+         <p> | </p>
+         <a href="listprod.jsp">Our Products</a>
+         <p> | </p>
+         <a href="showcart.jsp">Shopping Cart</a>
+		</div>
+ </nav>
+
+<h2>Order List</h2>
  
 <%
 //Note: Forces loading of SQL Server driver
@@ -80,3 +92,4 @@ catch (SQLException ex)
 </html>
  
  
+

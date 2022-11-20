@@ -9,8 +9,16 @@
 </head>
 <body>
  
-<h1>Our Grocery</h1>
-<hr>
+<nav>
+   <h1 class="logo">Our Grocery</h1>
+   <div class="links">
+      <a href="shop.html">Home</a>
+      <p> | </p>
+      <a href="showcart.jsp">Shopping Cart</a>
+      <p> | </p>
+      <a href="listorder.jsp">Orders</a>
+   </div>
+</nav>
 <p class="text">Search for the products you want to buy:</p>
  
 <form method="get" action="listprod.jsp">
@@ -76,7 +84,7 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
        String str = "addcart.jsp?id=" + prodId +"&name=" + prodname + "&price=" +prodprice;
        String str2 = str.replace(' ', '+');
        //out.println(str2);2
-       out.println("<tr><td><a href=" + str2 + "> Add to Cart</a></td>"+"<td>"+rst.getString(2)+"</td>" +"<td>"+currFormat.format(prodprice)+"</td></tr>");
+       out.println("<tr><td><a class=\"addcart\" href=" + str2 + "> Add to Cart</a></td>"+"<td>"+rst.getString(2)+"</td>" +"<td>"+currFormat.format(prodprice)+"</td></tr>");
  
    }
    out.println("</table>");
