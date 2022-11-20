@@ -8,8 +8,12 @@
 <html>
 <head>
 <title>Your Shopping Cart</title>
+<link rel="stylesheet" href="./css/showcart.css">
 </head>
 <body>
+
+<h1>Our Grocery</h1>
+<hr>
 
 <%
 // Get the current list of products
@@ -24,7 +28,7 @@ else
 {
 	NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
-	out.println("<h1>Your Shopping Cart</h1>");
+	out.println("<h2>Your Shopping Cart</h2>");
 	out.print("<table><tr><th>Product Id</th><th>Product Name</th><th>Quantity</th>");
 	out.println("<th>Price</th><th>Subtotal</th></tr>");
 

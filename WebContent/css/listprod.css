@@ -1,0 +1,68 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap'); */
+
+
+:root {
+	/* font-family: 'Poppins', sans-serif; */
+	font-family: 'Inter', sans-serif;
+	/* font-family: 'Rubik', sans-serif; */
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	width: 98%;
+	border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+	margin: 0 auto;
+	box-shadow:  rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+td {
+	border-bottom: 1px solid black;
+}
+
+td, th {
+	text-align: left;
+	padding: 10px;
+}
+
+.searchbar {
+	background-color: white;
+	padding: 5px;
+	border: 1px solid grey;
+}
+
+.button {
+	color: white;
+	background-color: #2596be;
+	padding: 5px 10px;
+	margin: 2px;
+	border-radius: 5px;
+	border: 1px solid #2596be;
+}
+
+.button:hover {
+	color: white;
+	background-color: #196885;
+	padding: 5px 10px;
+	margin: 2px;
+	border-radius: 5px;
+	border: 1px solid #196885;
+}
+
+.text {
+	color: black;
+	font-size: 1.2em;
+}
+
+.table-header {
+	background-color: #2596be;
+	color: white;
+}

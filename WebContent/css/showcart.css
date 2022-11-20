@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+:root {
+	font-family: 'Inter', sans-serif;
+}
+
+
+h1 {
+		text-align: center;
+		color: black;
+}
+
+table {
+
+	border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+
+}
+
+td, th {
+	text-align: left;
+	padding: 10px;
+}
+
+a {
+	color: white;
+	background-color: #2596be;
+	border: 1px solid #2596be;
+	text-decoration: none;
+	padding: 6px;
+}
+
+a:hover {
+	color: white;
+	background-color: #196885;
+}
+
+a:visited {
+	text-decoration: none;
+}

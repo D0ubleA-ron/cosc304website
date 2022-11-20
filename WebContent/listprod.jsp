@@ -5,14 +5,17 @@
 <html>
 <head>
 <title>YOUR NAME Grocery</title>
+<link rel="stylesheet" href="./css/listprod.css">
 </head>
 <body>
  
-<h1>Search for the products you want to buy:</h1>
+<h1>Our Grocery</h1>
+<hr>
+<p class="text">Search for the products you want to buy:</p>
  
 <form method="get" action="listprod.jsp">
-<input type="text" name="productName" size="50">
-<input type="submit" value="Submit"><input type="reset" value="Reset"> (Leave blank for all products)
+<input class="searchbar" type="text" name="productName" size="50">
+<input class="button" type="submit" value="Submit"><input class="button" type="reset" value="Reset"> (Leave blank for all products)
 </form>
  
 <% // Get product name to search for
@@ -63,7 +66,7 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
        rst = pstmt.executeQuery();
    }
    out.println("<h2>All Products</h2>");
-   out.println("<table><tr><th></th><th><h3>Product Name</h3></th><th><h3>Price</h3></th></tr>");
+   out.println("<table><tr class=\"table-header\"><th></th><th><h3>Product Name</h3></th><th><h3>Price</h3></th></tr>");
    while (rst.next())
    {
        int prodId = rst.getInt(1);
@@ -71,7 +74,9 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
        double prodprice = rst.getDouble(3);
        NumberFormat currFormat = NumberFormat.getCurrencyInstance();
        String str = "addcart.jsp?id=" + prodId +"&name=" + prodname + "&price=" +prodprice;
-       out.println("<tr><td><a href=" + str + "> Add to Cart</a></td>"+"<td>"+rst.getString(2)+"</td>" +"<td>"+currFormat.format(prodprice)+"</td></tr>");
+       String str2 = str.replace(' ', '+');
+       //out.println(str2);2
+       out.println("<tr><td><a href=" + str2 + "> Add to Cart</a></td>"+"<td>"+rst.getString(2)+"</td>" +"<td>"+currFormat.format(prodprice)+"</td></tr>");
  
    }
    out.println("</table>");
