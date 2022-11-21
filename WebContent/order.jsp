@@ -26,6 +26,7 @@
 <%
 // Get customer id
 String custId = request.getParameter("customerId");
+String custPw = request.getParameter("customerPw");
 @SuppressWarnings({"unchecked"})
 HashMap<String, ArrayList<Object>> productList = (HashMap<String, ArrayList<Object>>) session.getAttribute("productList");
  
@@ -38,20 +39,21 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
        Statement stmt = con.createStatement();)
 {  
    // Determine if valid customer id was entered
-   String sql = "SELECT customerId, firstName, lastName FROM customer WHERE customerId = ?";
+   String sql = "SELECT customerId, firstName, lastName, password FROM customer WHERE customerId = ?";
    PreparedStatement pstmt = con.prepareStatement(sql);
    pstmt.setString(1, custId);
    ResultSet rst = pstmt.executeQuery();
  
    try{
        Integer.parseInt(custId);
-       if(custId.equals("") || !rst.next()){
-           out.println("<h2>Invalid Id. Go to previous page and try again.</h2>");
+       if(custId.equals("") || !rst.next() || custPw.equals("")){
+           out.println("<h2>Invalid Id/Password. Go to previous page and try again.</h2>");
        // Determine if there are products in the shopping cart
        }else if(productList.isEmpty()){
            out.println("<h2>Your shopping cart is empty!</h2>");
        }else{
-           double total = 0;
+            if (custPw.equals(rst.getString(4))){
+                double total = 0;
            NumberFormat currFormat = NumberFormat.getCurrencyInstance();
  
            out.println("<h1>Your Order Summary</h1>");
@@ -110,11 +112,16 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
                }
            // Clear cart if order placed successfully
            productList.clear();
+
+            } else{
+                out.println("<h2>Invalid Password. Go to previous page and try again.</h2>");
+            }
+           
        }
    } 
    catch (NumberFormatException e) 
    {
-       out.println("<h2>Invalid Id. Go to previous page and try again.</h2>");
+       out.println("<h2>Invalid Id/Password. Go to previous page and try again.</h2>");
    }
   
 }
@@ -170,4 +177,3 @@ catch (SQLException ex)
 </HTML>
  
  
-
