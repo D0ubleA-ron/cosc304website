@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery</title>
+<title>Fridge's Grocery</title>
 <link rel="stylesheet" href="./css/listprod.css">
 </head>
 <body>
@@ -22,12 +22,16 @@
 <p class="text">Search for the products you want to buy:</p>
  
 <form method="get" action="listprod.jsp">
-<input class="searchbar" type="text" name="productName" size="50">
+<input class="searchbar" type="text" name="productName" size="50" placeholder="Search By Product">
+<input class="searchbar" type="text" name="productCategory" size="50" placeholder="Search By Category">
 <input class="button" type="submit" value="Submit"><input class="button" type="reset" value="Reset"> (Leave blank for all products)
 </form>
  
 <% // Get product name to search for
 String name = request.getParameter("productName");
+String category = request.getParameter("productCategory");
+Boolean printHeaders = false;
+
       
 //Note: Forces loading of SQL Server driver
 try
@@ -63,18 +67,53 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
 {  
    String sql = null;     
    ResultSet rst = null;
-   if(name == null || name.equals("")){
+   if((name == null || name.equals("")) && (category == null || category.equals(""))){
+       printHeaders = true;
        sql = "SELECT productId, productName, productPrice FROM product";      
        rst = stmt.executeQuery(sql);
+   } else if ((name == null || name.equals(""))){       //checks for blank product id and inputted category
+      printHeaders = true;
+      name = "%"+name+"%";
+      sql = "SELECT productId, productName, productPrice, categoryId FROM product WHERE categoryId = (SELECT categoryId FROM category WHERE categoryName LIKE ?)";
+      PreparedStatement pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, category);
+      rst = pstmt.executeQuery();
+      if (!rst.isBeforeFirst()){
+         printHeaders = false;
+         out.println("<h2>Unfortunately, this category does not exist/ has no products. Please try again</h2>");
+      }
+   } else if (category == null || category.equals("")){
+      printHeaders = true;
+      name = "%"+name+"%";
+      sql = "SELECT productId, productName, productPrice, categoryId FROM product WHERE productName LIKE ?";
+      PreparedStatement pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, name);
+      rst = pstmt.executeQuery();
+      
+      if (!rst.isBeforeFirst()){
+         printHeaders = false;
+         out.println("<h2>Unfortunately, the current product does not exist within our system. Please try again</h2>");
+      }
+      
    }else{
-       name = "%"+name+"%";
-       sql = "SELECT productId, productName, productPrice FROM product WHERE productName LIKE ?";
-       PreparedStatement pstmt = con.prepareStatement(sql);
-       pstmt.setString(1, name);
-       rst = pstmt.executeQuery();
+      printHeaders = true;
+      name = "%"+name+"%";
+      sql = "SELECT productId, productName, productPrice, categoryId FROM product WHERE productName LIKE ? AND categoryId = (SELECT categoryId FROM category WHERE categoryName LIKE ?)";
+      PreparedStatement pstmt = con.prepareStatement(sql);
+      pstmt.setString(1, name);
+      pstmt.setString(2, category);
+      rst = pstmt.executeQuery();
+      if (!rst.isBeforeFirst()){
+         printHeaders = false;
+         out.println("<h2>Unfortunately, that product does not exist in that category, please try again</h2>");
+      }
+  }
+   if (printHeaders){
+      out.println("<h2>All Products</h2>");
+      out.println("<table><tr class=\"table-header\"><th></th><th><h3>Product Name</h3></th><th><h3>Price</h3></th></tr>");
    }
-   out.println("<h2>All Products</h2>");
-   out.println("<table><tr class=\"table-header\"><th></th><th><h3>Product Name</h3></th><th><h3>Price</h3></th></tr>");
+   
+   
    while (rst.next())
    {
        int prodId = rst.getInt(1);
@@ -98,4 +137,3 @@ catch (SQLException ex)
  
 </body>
 </html>
-
