@@ -2,7 +2,6 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp" %>
-<%@ page import="java.io.File" %>
 
 <html>
 <head>
@@ -25,7 +24,7 @@ String pw = "304#sa#pw";
 try ( Connection con = DriverManager.getConnection(url, uid, pw);
        Statement stmt = con.createStatement();)
 { 
-    String sql = "SELECT productName, productPrice FROM product WHERE productId = ?";
+    String sql = "SELECT productName, productPrice, productImageURL, productImage FROM product WHERE productId = ?";
     PreparedStatement pstmt = con.prepareStatement(sql);
     pstmt.setString(1, productId);
     ResultSet rst = pstmt.executeQuery();
@@ -39,11 +38,12 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
         out.println("<b>Id  </b>" + productId + "<br>");
         out.println("<b>Price   </b>" + currFormat.format(prodprice) + "<br>");
 
-        String path = getServletContext().getRealPath("/img/" + productId + ".jpg");
-        File file = new File(path);
-        if(file.exists() ){  
-            out.println("<img src = \"./img/" + productId + ".jpg\">");
-           // out.println("<img src =\"displayImage.jsp?id=" + productId + "\"");
+        String imageURL = rst.getString(3);
+        String imageBinary = rst.getString(4);
+        if(imageURL != null ){  
+            out.println("<img src = \"" + imageURL + "\">");
+        }
+        if(imageBinary != null){
            String str3 = "displayImage.jsp?id=" + productId;
            out.println("<img src =" +str3 + ">"); 
         }
