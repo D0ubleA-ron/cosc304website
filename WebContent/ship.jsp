@@ -59,12 +59,16 @@
 					PreparedStatement pstmt4 = con.prepareStatement(sql4);
 					pstmt4.setInt(1, (rst3.getInt(1) - rst2.getInt(2)));
 					pstmt4.setInt(2, rst2.getInt(1));
+					pstmt4.executeUpdate();
+					
+					String sql5 = "INSERT INTO shipment(shipmentDate, warehouseId) VALUES (?, 1)";
+					PreparedStatement pstmt5 = con.prepareStatement(sql5);
+					pstmt5.setDate(1, java.sql.Date.valueOf(java.time.LocalDate.now()));
+					pstmt5.executeUpdate();
+
+					con.commit();
 
 					out.println("<h2>Ordered Product: " + rst2.getInt(1) + " Previous Inventory: " + rst3.getInt(1) + " New Inventory: ");
-					
-					pstmt4.executeUpdate();
-					con.commit();
-					
 					out.println((rst3.getInt(1) - rst2.getInt(2)) + "</h2><br>");
 					done = true;
 				}else{
@@ -74,6 +78,7 @@
 					break;
 				}
 			}
+			con.setAutoCommit(true);
 			if(done == true){
 				out.println("<h1>Shipment successfully processed.</h1><br>");
 			}
@@ -81,7 +86,10 @@
 	}
 	catch (SQLException ex)
 	{
+		con.rollback();
 		out.println("SQLException: " + ex);
+	}finally{
+		
 	}
 
 %>                       				
