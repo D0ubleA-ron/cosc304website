@@ -14,7 +14,7 @@
 <%
 String username = (String) session.getAttribute("authenticatedUser");
 if(username != null){
-   out.println("<h1 class=\"logo\">TECHub  Hello, " + username + "!</h1><div class=\"links\"><a href=\"index.jsp\">Home</a><p> | </p><a href=\"showcart.jsp\">Shopping Cart</a><p> | </p><a href=\"listorder.jsp\">Orders</a></div>");
+   out.println("<h1 class=\"logo\">TECHub  Hello, " + username + "!</h1><div class=\"links\"><a href=\"index.jsp\">Home</a><p> | </p><a href=\"showcart.jsp\">Shopping Cart</a><p> | </p><a href=\"listorder.jsp\">Orders</a><p> | </p><a href=\"admin.jsp\">Admin</a><p> | </p><a href=\"logout.jsp\">Logout</a></div>");
 }else{
    out.println("<h1 class=\"logo\">TECHub</h1><div class=\"links\"><a href=\"index.jsp\">Home</a><p> | </p><a href=\"showcart.jsp\">Shopping Cart</a><p> | </p><a href=\"listorder.jsp\">Orders</a></div>");
 }

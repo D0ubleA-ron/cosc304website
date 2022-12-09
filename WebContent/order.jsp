@@ -15,11 +15,17 @@
 <body>
  
 	<nav>
-		<h1 class="logo">Our Grocery</h1>
+		<h1 class="logo">TECHub</h1>
 		<div class="links">
          <a href="index.html">Home</a>
          <p> | </p>
          <a href="listprod.jsp">Our Products</a>
+         <%
+         String username = (String) session.getAttribute("authenticatedUser");
+         if(username != null){
+         out.print("<p> | </p><a href=\"admin.jsp\">Admin</a>");
+         out.print("<p> | </p><a href=\"logout.jsp\">Logout</a>");
+         }%>
 		</div>
  </nav>
 

@@ -12,13 +12,17 @@
     <nav>
 		<h1 class="logo"><a href="index.jsp">TECHub</a></h1>
 		<div class="links">
-			<a href="shop.html">Home</a>
+			<a href="index.jsp">Home</a>
       	<p> | </p>
 			 <a href="listprod.jsp">Our Products</a>
 			 <p> | </p>
 			 <a href="listorder.jsp">Orders</a>
-             <p> | </p>
-			 <a href="admin.jsp">Admin</a>
+             <%
+            String username = (String) session.getAttribute("authenticatedUser");
+            if(username != null){
+                out.print("<p> | </p><a href=\"admin.jsp\">Admin</a>");
+                out.print("<p> | </p><a href=\"logout.jsp\">Logout</a>");
+            }%>
 		</div>
  </nav>
 

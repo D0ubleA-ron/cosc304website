@@ -17,6 +17,12 @@
          <a href="listprod.jsp">Our Products</a>
          <p> | </p>
          <a href="showcart.jsp">Shopping Cart</a>
+         <%
+        String username = (String) session.getAttribute("authenticatedUser");
+        if(username != null){
+            out.print("<p> | </p><a href=\"admin.jsp\">Admin</a>");
+            out.print("<p> | </p><a href=\"logout.jsp\">Logout</a>");
+        }%>
 		</div>
  </nav>
 
