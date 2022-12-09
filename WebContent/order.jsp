@@ -15,23 +15,19 @@
 <body>
  
 	<nav>
-		<h1 class="logo">TECHub</h1>
+		<h1 class="logo">TECH</h1>
 		<div class="links">
-         <a href="index.html">Home</a>
+         <a href="index.jsp">Home</a>
          <p> | </p>
          <a href="listprod.jsp">Our Products</a>
-         <%
-         String username = (String) session.getAttribute("authenticatedUser");
-         if(username != null){
-         out.print("<p> | </p><a href=\"admin.jsp\">Admin</a>");
-         out.print("<p> | </p><a href=\"logout.jsp\">Logout</a>");
-         }%>
+         <p> | </p>
+         <a href="logout.jsp">Logout</a>
 		</div>
  </nav>
 
 <%
 // Get customer id
-String custId = request.getParameter("customerId");
+String custId = (String) session.getAttribute("testing");
 @SuppressWarnings({"unchecked"})
 HashMap<String, ArrayList<Object>> productList = (HashMap<String, ArrayList<Object>>) session.getAttribute("productList");
  

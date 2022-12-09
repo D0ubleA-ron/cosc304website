@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ray's Grocery CheckOut Line</title>
+<title>TECHub Lineup</title>
+<link rel="stylesheet" href="./css/listorder.css">
 </head>
 <body>
 
-<h1>Enter your customer id to complete the transaction:</h1>
+ 
+         <%
+        String username = (String) session.getAttribute("authenticatedUser");
+        if(username != null){
+            response.sendRedirect("order.jsp");	
+        }
+        else
+        {
+            response.sendRedirect("login.jsp");	
+        }
+         %>
 
-<form method="get" action="order.jsp">
-<input type="text" name="customerId" size="50">
-<input type="submit" value="Submit"><input type="reset" value="Reset">
-</form>
 
 </body>
 </html>
