@@ -31,8 +31,8 @@ if (session.getAttribute("loginMessage") != null)
 <input class="submit" type="submit" name="Submit2" value="Log In">
 </form>
 
-</div>
 
+</div>
 </body>
 </html>
 
