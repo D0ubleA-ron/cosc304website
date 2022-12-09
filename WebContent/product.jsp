@@ -6,11 +6,21 @@
 <html>
 <head>
 <title>Ray's Grocery - Product Information</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./css/product.css">
 </head>
 <body>
-
-<%@ include file="header.jsp" %>
+    <nav>
+		<h1 class="logo"><a href="index.jsp">TECHub</a></h1>
+		<div class="links">
+			<a href="shop.html">Home</a>
+      	<p> | </p>
+			 <a href="listprod.jsp">Our Products</a>
+			 <p> | </p>
+			 <a href="listorder.jsp">Orders</a>
+             <p> | </p>
+			 <a href="admin.jsp">Admin</a>
+		</div>
+ </nav>
 
 <%
 // Get product name to search for
@@ -41,7 +51,7 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
         String imageURL = rst.getString(3);
         String imageBinary = rst.getString(4);
         if(imageURL != null ){  
-            out.println("<img src = \"" + imageURL + "\">");
+            out.println("<img src = \"" + imageURL + "\" >");
         }
         if(imageBinary != null){
            String str3 = "displayImage.jsp?id=" + productId;

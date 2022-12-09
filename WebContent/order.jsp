@@ -17,7 +17,7 @@
 	<nav>
 		<h1 class="logo">Our Grocery</h1>
 		<div class="links">
-         <a href="shop.html">Home</a>
+         <a href="index.html">Home</a>
          <p> | </p>
          <a href="listprod.jsp">Our Products</a>
 		</div>
