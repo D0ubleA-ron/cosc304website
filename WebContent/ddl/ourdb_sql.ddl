@@ -179,8 +179,30 @@ SET ANSI_WARNINGS ON;
 
 INSERT INTO warehouse(warehouseName) VALUES ('Main warehouse');
 INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (1, 1, 5, 825);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (2, 1, 10, 950);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (3, 1, 3, 100);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (2, 1, 10, 700);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (3, 1, 3, 1500);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (4, 1, 2, 1250);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (5, 1, 6, 1000);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (6, 1, 3, 800);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (7, 1, 1, 400);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (8, 1, 0, 850);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (9, 1, 2, 950);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (10, 1, 3, 700);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (11, 1, 5, 25);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (12, 1, 10, 40);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (13, 1, 3, 30);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (14, 1, 2, 23);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (15, 1, 6, 100);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (16, 1, 3, 125);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (17, 1, 1, 20);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (18, 1, 0, 100);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (19, 1, 2, 200);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (20, 1, 3, 450);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (21, 1, 5, 75);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (22, 1, 10, 200);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (23, 1, 3, 80);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (24, 1, 2, 600);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (25, 1, 6, 100);
 
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Arnold', 'Anderson', 'a.anderson@gmail.com', '204-111-2222', '103 AnyWhere Street', 'Winnipeg', 'MB', 'R3X 45T', 'Canada', 'arnold' , 'test');
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Bobby', 'Brown', 'bobby.brown@hotmail.ca', '572-342-8911', '222 Bush Avenue', 'Boston', 'MA', '22222', 'United States', 'bobby' , 'bobby');
@@ -195,12 +217,28 @@ INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId,
 INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 2, 2, 950)
 INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 3, 1, 100);
 
+DECLARE @orderId int
+INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (2, '2019-10-17 05:45:11', 327.85)
+SELECT @orderId = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 10, 1, 700)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 8, 1, 850)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 15, 1, 100)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 14, 2, 23)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 19, 1, 200);
+
+DECLARE @orderId int
+INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (5, '2019-10-15 10:25:55', 277.40)
+SELECT @orderId = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 2, 1, 700)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 22, 1, 200)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 25, 3, 100);
+
 UPDATE Product SET productImageURL = 'img/mackbookair17.jpeg' WHERE ProductId = 1;
 UPDATE Product SET productImageURL = 'img/Dell XPS 13.jpg' WHERE ProductId = 2;
 UPDATE Product SET productImageURL = 'img/ASUS ROG Zephyrus G15 GA503.jpg' WHERE ProductId = 3;
 UPDATE Product SET productImageURL = 'img/HP Spectre x360 14.jpg' WHERE ProductId = 4;
 UPDATE Product SET productImageURL = 'img/Lenovo ThinkPad X1 Nano.jpg' WHERE ProductId = 5;
-UPDATE Product SET productImageURL = 'img/iphone-11-pro-silver.jpeg' WHERE ProductId = 6;
+UPDATE Product SET productImageURL = 'img/iphone11pro.jpeg' WHERE ProductId = 6;
 UPDATE Product SET productImageURL = 'img/iPhone X.jpg' WHERE ProductId = 7;
 UPDATE Product SET productImageURL = 'img/Samsung Galaxy S22 Ultra.jpg' WHERE ProductId = 8;
 UPDATE Product SET productImageURL = 'img/iPhone 13.jpg' WHERE ProductId = 9;
