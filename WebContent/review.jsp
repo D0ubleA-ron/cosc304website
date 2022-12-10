@@ -6,7 +6,7 @@
 
 <html>
 <head>
-<title>Ray's Grocery - Product Information</title>
+<title>TECHub - Product Information</title>
 <link rel="stylesheet" href="./css/product.css">
 </head>
 <body>
