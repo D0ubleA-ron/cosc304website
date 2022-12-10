@@ -13,6 +13,7 @@
 <%
 	String userName = (String) session.getAttribute("authenticatedUser");
 %>
+
 <nav>
 	<%
 	String username = (String) session.getAttribute("authenticatedUser");
@@ -23,6 +24,7 @@
 	}
 	%>
 	</nav>
+
 <%
 
 // TODO: Print Customer information
@@ -33,7 +35,7 @@ String pw = "304#sa#pw";
 try ( Connection con = DriverManager.getConnection(url, uid, pw);
     Statement stmt = con.createStatement();)
 { 
-    String sql = "SELECT customerId, firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid FROM customer WHERE userId = ?";
+    String sql = "SELECT customerId, firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password FROM customer WHERE userId = ?";
 	PreparedStatement pstmt = con.prepareStatement(sql);
 	pstmt.setString(1, userName);
     ResultSet rst = pstmt.executeQuery();
@@ -41,27 +43,39 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
 	out.println("<table border = 1>");
     while(rst.next()){
 		out.println("<tr><th>Id</th><td>" + rst.getString(1) +"</td></tr>");
-		out.println("<tr><th>First Name</th><td>" + rst.getString(2) +"</td></tr>");
+		out.println("<tr><th>First Name</th><td>" +rst.getString(2) +"</td></tr>");
+		session.setAttribute("firstName", rst.getString(2));
 		out.println("<tr><th>Last Name</th><td>" + rst.getString(3) +"</td></tr>");
+		session.setAttribute("lastName", rst.getString(3));
 		out.println("<tr><th>Email</th><td>" + rst.getString(4) +"</td></tr>");
+		session.setAttribute("email", rst.getString(4));
 		out.println("<tr><th>Phone</th><td>" + rst.getString(5) +"</td></tr>");
+		session.setAttribute("phone", rst.getString(5));
 		out.println("<tr><th>Address</th><td>" + rst.getString(6) +"</td></tr>");
+		session.setAttribute("address", rst.getString(6));
 		out.println("<tr><th>City</th><td>" + rst.getString(7) +"</td></tr>");
+		session.setAttribute("city", rst.getString(7));
 		out.println("<tr><th>State</th><td>" + rst.getString(8) +"</td></tr>");
+		session.setAttribute("state", rst.getString(8));
 		out.println("<tr><th>Postal Code</th><td>" + rst.getString(9) +"</td></tr>");
+		session.setAttribute("code", rst.getString(9));
 		out.println("<tr><th>Country</th><td>" + rst.getString(10) +"</td></tr>");
+		session.setAttribute("country", rst.getString(10));
 		out.println("<tr><th>User id</th><td>" + rst.getString(11) +"</td></tr>");
+		session.setAttribute("userid", rst.getString(11));
+		session.setAttribute("pwd", rst.getString(12));
     }
     out.println("</table>");
+	out.println("<br><button class=\"button\" onclick=\"location.href = 'editCustomer.jsp';\"> Edit customer info </button>");
 
 	NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 	out.println("<h3>Customer Orders</h3>");
-   out.println("<table border = 1><tr><th>Order Id</th><th>Customer Id</th><th>Customer Name</th><th>Total Amount</th></tr>");
-   String sql2 = "SELECT orderId, customer.customerId, firstName, lastName, totalAmount FROM ordersummary JOIN customer ON ordersummary.customerId = customer.customerId WHERE userId = ?";
-   pstmt = con.prepareStatement(sql2);
-   pstmt.setString(1, userName);
-   ResultSet rst2 = pstmt.executeQuery();
-   while(rst2.next()){
+   	out.println("<table border = 1><tr><th>Order Id</th><th>Customer Id</th><th>Customer Name</th><th>Total Amount</th></tr>");
+   	String sql2 = "SELECT orderId, customer.customerId, firstName, lastName, totalAmount FROM ordersummary JOIN customer ON ordersummary.customerId = customer.customerId WHERE userId = ?";
+   	pstmt = con.prepareStatement(sql2);
+   	pstmt.setString(1, userName);
+  	ResultSet rst2 = pstmt.executeQuery();
+   	while(rst2.next()){
        double totalprice = rst2.getDouble(5);
        out.println("<tr><td>"+rst2.getInt(1)+"</td>" +"<td>"+rst2.getInt(2)+"</td>"+"<td>"+rst2.getString(3)+ " " + rst2.getString(4)+"</td>"+"<td>"+currFormat.format(totalprice)+"</td></tr>");
 	   sql2 = "SELECT productId, quantity, price FROM orderproduct JOIN ordersummary ON orderproduct.orderId = ordersummary.orderId WHERE orderproduct.orderId = ?";
@@ -75,6 +89,7 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
 		   
        }
 	   out.println("</table></td></tr>");
+	   out.println("</table>");
    }
 }
 catch (SQLException ex)
@@ -82,8 +97,9 @@ catch (SQLException ex)
     out.println("SQLException: " + ex);
 }
 
-// Make sure to close connection
+
 %>
+
 
 </body>
 </html>
