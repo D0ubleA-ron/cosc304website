@@ -2,8 +2,17 @@
 <html>
     <head>
         <title>Account Creation Page</title>
+        <link rel="stylesheet" href="./css/product.css">
     </head>
     <body>
+        <nav>
+		<h1 class="logo"><a href="index.jsp">TECHub</a></h1>
+		<div class="links">
+			<a href="index.jsp">Home</a>
+      	<p> | </p>
+			 <a href="listprod.jsp">Our Products</a>
+		</div>
+ </nav>
         <div style="margin:0 auto;text-align:center;display:inline">
         <h1>Create an Account</h1>
         <form name="MyForm" method=post action="accountCreated.jsp">

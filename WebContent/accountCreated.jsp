@@ -4,9 +4,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="./css/product.css">
         <title>Account Created!</title>
     </head>
     <body>
+        <nav>
+            <h1 class="logo"><a href="index.jsp">TECHub</a></h1>
+            <div class="links">
+                <a href="index.jsp">Home</a>
+              <p> | </p>
+                 <a href="listprod.jsp">Our Products</a>
+            </div>
+     </nav>
         <%
 
             try
