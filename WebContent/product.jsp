@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<title>Ray's Grocery - Product Information</title>
+<title>TECHub - Product Information</title>
 <link rel="stylesheet" href="./css/product.css">
 </head>
 <body>
@@ -61,24 +61,31 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
            String str3 = "displayImage.jsp?id=" + productId;
            out.println("<img src =" +str3 + ">"); 
         }
-        
+        session.setAttribute("productId", productId);
         out.println("<h2><a href=\"addcart.jsp?id=" + productId + "&name=" + prodname + "&price=" + prodprice+ "\">Add to Cart</a></h2>");
-    }
+        out.println("<a href=\"review.jsp?id=" + productId + "\">Add Review</a>");
 
+
+    }
+    out.println("<h2><a href=\"listprod.jsp\">Continue Shopping</a></h2>");
+    out.println("<h1>Reviews</h1>");
+
+    String sql2 = "SELECT * FROM review WHERE productId = ?";
+    PreparedStatement pstmt2 = con.prepareStatement(sql2);
+    pstmt2.setString(1, productId);
+    ResultSet rst2 = pstmt2.executeQuery();
+    while(rst2.next()){
+        out.println("<p>Comment: "+ rst2.getString(6) + "</p>");
+    }
+    
+   
 }
 catch (SQLException ex)
 {
    System.err.println("SQLException: " + ex);
 }
 
-
-// TODO: If there is a productImageURL, display using IMG tag
-		
-// TODO: Retrieve any image stored directly in database. Note: Call displayImage.jsp with product id as parameter.
-		
-// TODO: Add links to Add to Cart and Continue Shopping
 %>
-<h2><a href="listprod.jsp">Continue Shopping</a></h2>
 </body>
 </html>
 
