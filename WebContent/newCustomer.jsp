@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <td><label for="phonenum">Phone Number:</label></td>
-                <td> <input type="tel" id="phonenum" name="phonenum" maxlength=12 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" size=30></td>
+                <td> <input type="tel" id="phonenum" name="phonenum" maxlength=12 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" size=30  placeholder="XXX-XXX-XXXX"></td>
             </tr>
             <tr>
                 <td><label for="add">Address:</label></td>
