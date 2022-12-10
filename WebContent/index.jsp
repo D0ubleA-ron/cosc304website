@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>Ray's Grocery Main Page</title>
+        <title>TECHub Main Page</title>
         <link rel="stylesheet" href="./css/listprod.css">
 </head>
 
