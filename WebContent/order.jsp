@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery Order Processing</title>
+<title>TECHub Order Processing</title>
 <link rel="stylesheet" href="./css/order.css">
 </head>
 <body>
