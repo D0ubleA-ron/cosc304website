@@ -11,7 +11,7 @@
 <%@ include file="jdbc.jsp" %>
 <%@ page import="java.text.NumberFormat" %>
 <nav>
-    <h1 class="logo">Our Grocery</h1>
+    <h1 class="logo">TECHub</h1>
     <div class="links">
      <a href="index.jsp">Home</a>
      <p> | </p>
