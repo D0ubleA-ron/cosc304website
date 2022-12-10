@@ -20,9 +20,13 @@
 
         <h2 align="center"><a href="listorder.jsp">List All Orders</a></h2>
 
+        <h2 align="center"><a href="allCustomers.jsp">List All Customers</a></h2>
+
         <h2 align="center"><a href="customer.jsp">Customer Info</a></h2>
 
         <h2 align="center"><a href="admin.jsp">Administrators</a></h2>
+
+        <h2 align="center"><a href="manageDB.jsp">Manage Database</a></h2>
 <%
         if(username != null){
                 out.print("<h2 align=\"center\"><a href=\"logout.jsp\">Logout</a></h2>");
