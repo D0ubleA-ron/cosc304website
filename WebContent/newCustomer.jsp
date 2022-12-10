@@ -56,10 +56,14 @@
                 <td><label for="password">Password:</label></td>
                 <td><input type="password" id="password" name="password" size=30 required=" password"></td>
             </tr>
+            <tr>
+                <td><label for="password">Enter Password Again:</label></td>
+                <td><input type="password" id="password2" name="password2" size=30 required=" password2"></td>
+            </tr>
             </table>
             <br><br>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+    <input type="submit" value="Submit">
+</form>
+</div>
     </body>
 </html>
