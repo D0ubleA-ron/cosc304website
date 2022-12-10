@@ -3,8 +3,14 @@
 <html>
 <head>
 <title>Update product page</title>
+<link rel="stylesheet" href="./css/updateProd.css">
 </head>
 <body>
+    <nav>
+		<h1 class="logo"><a href="index.jsp">TECHub</a></h1>
+		
+ </nav>
+
     <h3>Update product</h3>
     <form name="form1" method="post" action="updateProd2.jsp">
         <table style="display:inline">
