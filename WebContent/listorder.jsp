@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery Order List</title>
+<title>TECHub Order List</title>
 <link rel="stylesheet" href="./css/listorder.css">
 </head>
 <body>
  
 	<nav>
-		<h1 class="logo">Our Grocery</h1>
+		<h1 class="logo">TECHub</h1>
 		<div class="links">
          <a href="index.jsp">Home</a>
          <p> | </p>
