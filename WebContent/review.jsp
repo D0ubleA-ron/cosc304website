@@ -38,7 +38,7 @@
 	<%
 	String productId = (String) session.getAttribute("productId");
 	String reviewComment = request.getParameter("reviewComment");
-	out.println("<p>" + productId +"</p>");
+	
 	String url = "jdbc:sqlserver://cosc304_sqlserver:1433;DatabaseName=orders;TrustServerCertificate=True";    
     String uid = "sa";
     String pw = "304#sa#pw";
