@@ -38,7 +38,7 @@ String pw = "304#sa#pw";
 try ( Connection con = DriverManager.getConnection(url, uid, pw);
        Statement stmt = con.createStatement();)
 { 
-    String sql = "SELECT productName, productPrice, productImageURL, productImage FROM product WHERE productId = ?";
+    String sql = "SELECT productName, productPrice, productImageURL, productImage, productDesc FROM product WHERE productId = ?";
     PreparedStatement pstmt = con.prepareStatement(sql);
     pstmt.setString(1, productId);
     ResultSet rst = pstmt.executeQuery();
@@ -49,8 +49,9 @@ try ( Connection con = DriverManager.getConnection(url, uid, pw);
         prodprice = rst.getDouble(2);
         NumberFormat currFormat = NumberFormat.getCurrencyInstance();
         out.println("<h1>" + prodname + "</h1>");
-        out.println("<b>Id  </b>" + productId + "<br>");
-        out.println("<b>Price   </b>" + currFormat.format(prodprice) + "<br>");
+        out.println("<b>Id:  </b>" + productId + "<br>");
+        out.println("<b>Price:   </b>" + currFormat.format(prodprice) + "<br>");
+        out.println("<b>Description:   </b>" + rst.getString(5) + "<br>");
 
         String imageURL = rst.getString(3);
         String imageBinary = rst.getString(4);
